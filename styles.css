@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.open-login, .download-button, .demo-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.open-login { background-color: #007bff; color: white; }
+.download-button { background-color: #28a745; color: white; }
+.demo-button { background-color: #ff5733; color: white; }
+
+.open-login:hover { background-color: #0056b3; }
+.download-button:hover { background-color: #218838; }
+.demo-button:hover { background-color: #c70039; }
+
+.login-dialog, .main-dialog, .demo-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.login-content, .main-content, .demo-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.login-dialog.show .login-content,
+.main-dialog.show .main-content,
+.demo-dialog.show .demo-content {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+#error-message {
+    color: red;
+    font-weight: bold;
+}
