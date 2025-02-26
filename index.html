@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Login Page</title>
+    <title>Animated Login Page with WhatsApp Contact</title>
     <style>
         * {
             margin: 0;
@@ -21,7 +21,7 @@
         }
 
         .login-container {
-            background: linear-gradient(135deg, #6e7e8f, #557a95);
+            background: linear-gradient(135deg, #556270, #4e73df);
             border-radius: 12px;
             padding: 40px;
             width: 400px;
@@ -32,11 +32,11 @@
 
         @keyframes continuousAnimation {
             0% {
-                background-color: #6e7e8f;
+                background-color: #556270;
                 transform: translateY(0);
             }
             25% {
-                background-color: #557a95;
+                background-color: #4e73df;
                 transform: translateY(-10px);
             }
             50% {
@@ -48,7 +48,7 @@
                 transform: translateY(-10px);
             }
             100% {
-                background-color: #6e7e8f;
+                background-color: #556270;
                 transform: translateY(0);
             }
         }
@@ -79,7 +79,7 @@
 
         button {
             padding: 14px 28px;
-            width: 100%;
+            width: 48%;
             background-color: #4CAF50;
             border: none;
             border-radius: 8px;
@@ -94,27 +94,40 @@
             background-color: #45a049;
         }
 
+        #whatsappBtn {
+            background-color: #25D366; /* WhatsApp Green */
+            margin-left: 4%;
+            animation: buttonColorChange 2s infinite;
+        }
+
+        #whatsappBtn:hover {
+            background-color: #128C7E; /* Darker WhatsApp Green */
+        }
+
+        /* Animation for WhatsApp button */
+        @keyframes buttonColorChange {
+            0% {
+                background-color: #25D366;
+            }
+            25% {
+                background-color: #075E54;
+            }
+            50% {
+                background-color: #128C7E;
+            }
+            75% {
+                background-color: #25D366;
+            }
+            100% {
+                background-color: #075E54;
+            }
+        }
+
         .error-message {
             color: red;
             font-size: 14px;
             margin-top: 10px;
             display: none;
-        }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #fff;
-        }
-
-        .footer a {
-            color: #ddd;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .footer a:hover {
-            color: #fff;
         }
     </style>
 </head>
@@ -124,11 +137,15 @@
         <h2>Login</h2>
         <input type="text" id="username" class="input-field" placeholder="Username" />
         <input type="password" id="password" class="input-field" placeholder="Password" />
-        <button id="loginBtn">Login</button>
-        <p class="error-message" id="loginError">Incorrect Username or Password</p>
-        <div class="footer">
-            <p>Don't have an account? <a href="#">Sign up here</a></p>
+        
+        <!-- Login and WhatsApp buttons -->
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+            <button id="loginBtn">Login</button>
+            <!-- WhatsApp button that redirects to WhatsApp chat with a message -->
+            <button id="whatsappBtn" onclick="window.location.href='https://wa.me/923321709972?text=HELLO,%20Developer%20HACKER%20TF'">WhatsApp Contact</button>
         </div>
+        
+        <p class="error-message" id="loginError">Incorrect Username or Password</p>
     </div>
 
     <script>
