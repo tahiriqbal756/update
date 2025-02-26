@@ -123,6 +123,29 @@
             }
         }
 
+        .demo-btn {
+            background-color: #FF9800;
+            margin-top: 20px;
+            width: 100%;
+            animation: demoButtonAnimation 2s infinite;
+        }
+
+        .demo-btn:hover {
+            background-color: #f57c00;
+        }
+
+        @keyframes demoButtonAnimation {
+            0% {
+                background-color: #FF9800;
+            }
+            50% {
+                background-color: #FFC107;
+            }
+            100% {
+                background-color: #FF9800;
+            }
+        }
+
         .error-message {
             color: red;
             font-size: 14px;
@@ -145,6 +168,9 @@
             <button id="whatsappBtn" onclick="window.location.href='https://wa.me/923321709972?text=HELLO,%20Developer%20HACKER%20TF'">WhatsApp Contact</button>
         </div>
         
+        <!-- Demo Button -->
+        <button class="demo-btn" id="demoBtn">Demo</button>
+
         <p class="error-message" id="loginError">Incorrect Username or Password</p>
     </div>
 
@@ -152,6 +178,7 @@
         const loginBtn = document.getElementById('loginBtn');
         const loginError = document.getElementById('loginError');
         const loginDialog = document.getElementById('loginDialog');
+        const demoBtn = document.getElementById('demoBtn');
 
         const validUsername = 'TF'; // Set username to "TF"
         const validPassword = 'TF'; // Set password to "TF"
@@ -168,6 +195,11 @@
             } else {
                 loginError.style.display = 'block'; // Show error message if login is incorrect
             }
+        }
+
+        // Demo Button click handler
+        demoBtn.onclick = function() {
+            alert('Demo Button Clicked!');
         }
     </script>
 
