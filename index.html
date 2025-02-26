@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
         body {
             display: flex;
@@ -20,6 +20,7 @@
             background: #121212;
             color: white;
             flex-direction: column;
+            text-align: center;
         }
         .login-container {
             background: #222;
@@ -34,7 +35,6 @@
             margin-bottom: 15px;
             text-transform: uppercase;
             font-size: 22px;
-            text-align: center;
         }
         input {
             width: 100%;
@@ -61,75 +61,73 @@
         }
         .login-btn { background-color: #00ffcc; color: black; }
         .help-btn { background-color: #ff4444; color: white; }
-        .dark-mode-btn { background-color: #007bff; color: white; margin-top: 20px; }
         .hidden { display: none; }
-        
-        /* Button Grid */
+
+        /* Dialog Box */
+        .dialog-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+        .dialog-box {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .close-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Buttons Inside Dialog */
         .buttons-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             gap: 10px;
             margin-top: 20px;
-            width: 90%;
+            width: 100%;
         }
         .dynamic-button {
-            width: 45%;
+            width: 100%;
             height: 50px;
             border: none;
             border-radius: 8px;
             font-weight: bold;
             color: white;
-            animation: colorChange 2s infinite alternate;
+            font-size: 16px;
+            background: linear-gradient(45deg, #ff4444, #00ffcc);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
         }
-
-        /* Button Color Animation */
-        @keyframes colorChange {
-            0% { background-color: #ff4444; }
-            25% { background-color: #ff8800; }
-            50% { background-color: #007bff; }
-            75% { background-color: #00cc66; }
-            100% { background-color: #ff00ff; }
+        .dynamic-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
         }
-
-        /* Title Style */
-        .title {
-            font-size: 26px;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
-            text-shadow: 0px 0px 10px #00ffcc;
-            animation: glow 1.5s infinite alternate;
-        }
-
-        /* Title Glow Effect */
-        @keyframes glow {
-            0% { color: #00ffcc; }
-            50% { color: #ff00ff; }
-            100% { color: #00ccff; }
-        }
-
-        /* Light Mode */
-        body.light-mode {
-            background: white;
-            color: black;
-        }
-        .light-mode .login-container {
-            background: #f0f0f0;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-        .light-mode h2 { color: #007bff; }
-        .light-mode .login-btn { background-color: #007bff; color: white; }
-        .light-mode .help-btn { background-color: #ff5722; }
-        .light-mode .dark-mode-btn { background-color: #333; color: white; }
     </style>
 </head>
 <body>
 
-    <!-- Dark Mode Toggle Button -->
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
-
-    <!-- Login Popup -->
+    <!-- Login Form -->
     <div class="login-container" id="loginContainer">
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Enter Username">
@@ -141,10 +139,13 @@
         <p id="error-message" style="color:red;"></p>
     </div>
 
-    <!-- Buttons After Login -->
-    <div class="hidden" id="buttonsContainer">
-        <h2 class="title">WhatsApp Mods Download</h2>
-        <div class="buttons-container" id="dynamicButtons"></div>
+    <!-- Dialog Box After Login -->
+    <div class="dialog-container" id="dialogBox">
+        <div class="dialog-box">
+            <h2>WhatsApp Mods Download</h2>
+            <div class="buttons-container" id="dynamicButtons"></div>
+            <button class="close-btn" onclick="closeDialog()">Close</button>
+        </div>
     </div>
 
     <script>
@@ -154,8 +155,7 @@
 
             if (username === "TF" && password === "TF") {
                 document.getElementById("loginContainer").classList.add("hidden");
-                document.getElementById("buttonsContainer").classList.remove("hidden");
-                generateButtons();
+                openDialog();
             } else {
                 document.getElementById("error-message").textContent = "Invalid Username or Password!";
             }
@@ -166,8 +166,19 @@
             window.open(whatsappURL, "_blank");
         }
 
+        function openDialog() {
+            document.getElementById("dialogBox").style.display = "flex";
+            generateButtons();
+        }
+
+        function closeDialog() {
+            document.getElementById("dialogBox").style.display = "none";
+        }
+
         function generateButtons() {
             var container = document.getElementById("dynamicButtons");
+            container.innerHTML = ""; // Clear previous buttons
+
             var buttonsData = [
                 { text: "WhatsApp Gold", link: "https://media4.appsfire.co/file/wa2-abo3rab-apk" },
                 { text: "WhatsApp Red", link: "https://media4.appsfire.co/file/wa3-abo3rab-apk" },
@@ -175,23 +186,15 @@
                 { text: "AG2 WhatsApp", link: "https://media4.appsfire.co/file/ag2-whatsapp-by-assem-apk" },
                 { text: "AG3 WhatsApp", link: "https://media4.appsfire.co/file/ag3-whatsapp-by-assem-apk" },
                 { text: "WhatsApp Business", link: "https://media4.appsfire.co/file/wa-abo3rab-apk" },
-                { text: "WhatsApp Blue", link: "https://media4.appsfire.co/file/wa4-abo3rab-apk" },
-                { text: "WhatsApp Plus", link: "https://media4.appsfire.co/file/whatsapp-plus-by-assem-apk" },
-                { text: "ER WhatsApp", link: "https://media4.appsfire.co/file/er-whats-app-by-assem-apk" },
-                { text: "WhatsApp Black", link: "https://media4.appsfire.co/file/wa5-abo3rab-apk" }
+                { text: "WhatsApp Blue", link: "https://media4.appsfire.co/file/wa4-abo3rab-apk" }
             ];
-            buttonsData.forEach((data, index) => {
+            buttonsData.forEach((data) => {
                 var btn = document.createElement("button");
                 btn.className = "dynamic-button";
                 btn.textContent = data.text;
-                btn.style.float = (index % 2 === 0) ? "left" : "right";
                 btn.onclick = function() { window.open(data.link, "_blank"); };
                 container.appendChild(btn);
             });
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle("light-mode");
         }
     </script>
 
