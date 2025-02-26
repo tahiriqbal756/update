@@ -1,289 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encrypted Login with Animation</title>
+    <title>پرسنل ویب سائٹ</title>
     <style>
+        /* بنیادی اسٹائل */
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f4f4f9;
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        body.dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-        #myDialog {
-            display: block;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            text-align: center;
-            animation: dialogColorChange 1s infinite;
-        }
-
-        #overlay {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        input[type="text"], input[type="password"] {
-            padding: 8px;
-            margin: 10px 0;
-            width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        #loginBtn, #whatsappContactBtn, #demoBtn {
-            padding: 8px 16px;
+        button {
+            padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
-            cursor: pointer;
             border-radius: 5px;
-            transition: 0.3s;
+            cursor: pointer;
+            font-size: 16px;
         }
 
-        #loginBtn:hover, #whatsappContactBtn:hover, #demoBtn:hover {
+        button:hover {
             background-color: #45a049;
         }
 
-        #closeDialog {
-            padding: 8px 16px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        #closeDialog:hover {
-            background-color: #da190b;
-        }
-
-        #darkModeBtn {
-            padding: 8px 16px;
-            background-color: #555;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        #darkModeBtn:hover {
-            background-color: #333;
-        }
-
-        #loginError {
-            color: red;
+        /* لاگ ان ڈائیلاگ */
+        .modal {
             display: none;
-            margin-top: 10px;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            animation: fadeIn 0.5s ease-in-out;
         }
 
-        #whatsappContactBtn {
-            margin-left: 10px;
-            background-color: #25d366;
-            animation: buttonColorChange 1s infinite;
+        /* ڈائیلاگ کے مواد کی اسٹائل */
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-in-out;
         }
 
-        #whatsappContactBtn:hover {
-            background-color: #128C7E;
+        /* کلوز بٹن */
+        .close-btn {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            cursor: pointer;
         }
 
-        @keyframes buttonColorChange {
-            0% {
-                background-color: #FF5733;
-            }
-            10% {
-                background-color: #33FF57;
-            }
-            20% {
-                background-color: #5733FF;
-            }
-            30% {
-                background-color: #FF33A1;
-            }
-            40% {
-                background-color: #33D4FF;
-            }
-            50% {
-                background-color: #FF5733;
-            }
-            60% {
-                background-color: #FFD700;
-            }
-            70% {
-                background-color: #FF6347;
-            }
-            80% {
-                background-color: #4CAF50;
-            }
-            90% {
-                background-color: #9C27B0;
-            }
-            100% {
-                background-color: #FF5733;
-            }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
 
-        @keyframes dialogColorChange {
-            0% {
-                background-color: #FF5733;
-            }
-            10% {
-                background-color: #33FF57;
-            }
-            20% {
-                background-color: #5733FF;
-            }
-            30% {
-                background-color: #FF33A1;
-            }
-            40% {
-                background-color: #33D4FF;
-            }
-            50% {
-                background-color: #FF5733;
-            }
-            60% {
-                background-color: #FFD700;
-            }
-            70% {
-                background-color: #FF6347;
-            }
-            80% {
-                background-color: #4CAF50;
-            }
-            90% {
-                background-color: #9C27B0;
-            }
-            100% {
-                background-color: #FF5733;
-            }
-        }
-
-        #demoContent {
-            margin-top: 20px;
-            height: 200px;
-            overflow-y: scroll;
-            text-align: left;
+        /* فارم کی اسٹائل */
+        input {
+            width: 100%;
             padding: 10px;
-            background-color: #f4f4f9;
-            border: 1px solid #ddd;
+            margin: 10px 0;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            font-family: 'Courier New', Courier, monospace;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
 
+        input:focus {
+            background-color: #f0f8ff;
+            border-color: #4CAF50;
+        }
+
+        /* انیمیشن */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
+    <!-- لاگ ان بٹن -->
+    <button id="loginBtn">لاگ ان کریں</button>
 
-    <div id="overlay"></div>
+    <!-- لاگ ان ڈائیلاگ -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>لاگ ان کریں</h2>
+            <form id="loginForm">
+                <label for="username">یوزرنیم:</label>
+                <input type="text" id="username" name="username" required>
 
-    <div id="myDialog">
-        <button id="bismillahBtn">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</button>
-        <h3>Login</h3>
-        <input type="text" id="username" placeholder="Username" />
-        <input type="password" id="password" placeholder="Password" />
-        <button id="loginBtn">Login</button>
-        <button id="whatsappContactBtn" onclick="window.location.href='https://wa.me/923321709972?text=HELLO,%20Developer%20HACKER%20TF'">WhatsApp Contact</button>
-        <button id="demoBtn">Demo</button>
-        <button id="darkModeBtn">Toggle Dark Mode</button>
-        <button id="closeDialog">Close</button>
-        <p id="loginError">Incorrect Username or Password</p>
-        <div id="demoContent">
-            𝗔𝗹𝗹 𝗧𝗵𝗶𝘀 𝗛𝗮𝗰𝗸𝗶𝗻𝗴 𝗔𝘃𝗮𝗹𝗶𝗯𝗹𝗲 𝗶𝗻 𝗟𝗼𝗪 𝗣𝗿𝗶𝗰𝗲😈✅💎🇵🇰✨💫🌟<br><br>
-            𝗔𝗹𝗹 𝗧𝗵𝗶𝘀 𝗔𝘃𝗮𝗹𝗶𝗯𝗹𝗲😈🎭🤍💫🌟<br><br>
-            𝗔𝗹𝗹 𝗛𝗮𝗰𝗸𝗶𝗻𝗴😎💪🔥🖤💫🌟✨😈🎭<br><br>
-            😈🌟𝗠𝗼𝗯𝗶𝗹𝗲 𝗛𝗮𝗰𝗸💫🎭<br><br>
-            😈🌟𝗔𝗻𝗱𝗿𝗼𝗶𝗱 𝗛𝗮𝗰𝗸💫🎭<br><br>
-            😈🌟𝗚𝗮𝗹𝗹𝗲𝗿𝘆 𝗛𝗮𝗰𝗸💫🎭<br><br>
-            😈🌟𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗛𝗮𝗰𝗸💫🎭<br><br>
-            😈🌟𝗪𝗵𝗮𝘁𝘀𝗮𝗽𝗽 𝗛𝗮𝗰𝗸💫🎭<br><br>
-            𝗧𝗶𝗸𝘁𝗼𝗸 𝗛𝗮𝗰𝗸💫🎭<br><br>
-            𝗠𝗮𝗻𝘆 𝗠𝗼𝗿𝗲 𝗛𝗮𝗰𝗸💫🎭<br><br>
-            <b>Cr𝗲𝗮𝗱𝗶𝘁 𝗕𝘆: 923321709972</b>
+                <label for="password">پاسورڈ:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">لاگ ان</button>
+            </form>
         </div>
     </div>
 
     <script>
-        // Encrypting login credentials using Base64 encoding
-        const encryptedUsername = btoa('TF');  // Encrypt 'TF' to Base64
-        const encryptedPassword = btoa('TF');  // Encrypt 'TF' to Base64
+        // لاگ ان ڈائیلاگ کو کھولنے اور بند کرنے کی فنکشن
+        var modal = document.getElementById("loginModal");
+        var btn = document.getElementById("loginBtn");
+        var span = document.getElementsByClassName("close-btn")[0];
 
-        const closeDialogBtn = document.getElementById('closeDialog');
-        const loginBtn = document.getElementById('loginBtn');
-        const whatsappContactBtn = document.getElementById('whatsappContactBtn');
-        const darkModeBtn = document.getElementById('darkModeBtn');
-        const dialogBox = document.getElementById('myDialog');
-        const overlay = document.getElementById('overlay');
-        const loginError = document.getElementById('loginError');
-        const demoBtn = document.getElementById('demoBtn');
-
-        // Close dialog
-        closeDialogBtn.onclick = function() {
-            dialogBox.style.display = 'none';
-            overlay.style.display = 'none';
+        btn.onclick = function() {
+            modal.style.display = "block";
         }
 
-        // Handle login functionality
-        loginBtn.onclick = function() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
 
-            // Decrypting the encrypted credentials
-            const decryptedUsername = atob(encryptedUsername);
-            const decryptedPassword = atob(encryptedPassword);
-
-            // Check if username and password match the encrypted values
-            if (username === decryptedUsername && password === decryptedPassword) {
-                alert('Login Successful!');
-                dialogBox.style.display = 'none';
-                overlay.style.display = 'none';
-            } else {
-                loginError.style.display = 'block';  // Incorrect credentials
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
 
-        // Close dialog if overlay is clicked
-        overlay.onclick = function() {
-            dialogBox.style.display = 'none';
-            overlay.style.display = 'none';
-        }
+        // فارم سبمٹ ہونے پر لاگ ان کی تصدیق
+        document.getElementById("loginForm").onsubmit = function(event) {
+            event.preventDefault(); // فارم کو خود بخود سبمٹ ہونے سے روکتا ہے
 
-        // Toggle Dark Mode
-        darkModeBtn.onclick = function() {
-            document.body.classList.toggle('dark-mode');
-        }
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
 
-        // Demo Button functionality
-        demoBtn.onclick = function() {
-            alert('Demo Button Clicked!');
+            // یہاں آپ یوزرنیم اور پاسورڈ کی تصدیق کر سکتے ہیں
+            if (username == "your_username" && password == "your_password") {
+                alert("آپ کا لاگ ان کامیاب ہو چکا ہے!");
+                modal.style.display = "none"; // لاگ ان ہونے کے بعد ڈائیلاگ کو بند کر دیں
+            } else {
+                alert("غلط یوزرنیم یا پاسورڈ!");
+            }
         }
     </script>
-
 </body>
-    </html>
+</html>
