@@ -3,205 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Login Page with WhatsApp Contact</title>
+    <title>Encrypted Login with Animation</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-container {
-            background: linear-gradient(135deg, #556270, #4e73df);
-            border-radius: 12px;
-            padding: 40px;
-            width: 400px;
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            background-color: #f4f4f9;
             text-align: center;
-            animation: continuousAnimation 5s infinite ease-in-out;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        @keyframes continuousAnimation {
-            0% {
-                background-color: #556270;
-                transform: translateY(0);
-            }
-            25% {
-                background-color: #4e73df;
-                transform: translateY(-10px);
-            }
-            50% {
-                background-color: #FF5733;
-                transform: translateY(10px);
-            }
-            75% {
-                background-color: #4CAF50;
-                transform: translateY(-10px);
-            }
-            100% {
-                background-color: #556270;
-                transform: translateY(0);
-            }
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
         }
 
-        h2 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 28px;
-            font-weight: 600;
+        #myDialog {
+            display: block;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+            animation: dialogColorChange 1s infinite;
         }
 
-        .input-field {
+        #overlay {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 12px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 8px;
             margin: 10px 0;
-            border-radius: 8px;
-            border: none;
-            font-size: 16px;
-            background-color: #fff;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            transition: 0.3s ease;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
 
-        .input-field:focus {
-            outline: none;
-            box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.5);
-        }
-
-        button {
-            padding: 14px 28px;
-            width: 48%;
+        #loginBtn, #whatsappContactBtn, #demoBtn {
+            padding: 8px 16px;
             background-color: #4CAF50;
-            border: none;
-            border-radius: 8px;
             color: white;
-            font-size: 16px;
+            border: none;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 20px;
+            border-radius: 5px;
+            transition: 0.3s;
         }
 
-        button:hover {
+        #loginBtn:hover, #whatsappContactBtn:hover, #demoBtn:hover {
             background-color: #45a049;
         }
 
-        #whatsappBtn {
-            background-color: #25D366; /* WhatsApp Green */
-            margin-left: 4%;
-            animation: buttonColorChange 2s infinite;
+        #closeDialog {
+            padding: 8px 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
         }
 
-        #whatsappBtn:hover {
-            background-color: #128C7E; /* Darker WhatsApp Green */
+        #closeDialog:hover {
+            background-color: #da190b;
         }
 
-        /* Animation for WhatsApp button */
+        #darkModeBtn {
+            padding: 8px 16px;
+            background-color: #555;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        #darkModeBtn:hover {
+            background-color: #333;
+        }
+
+        #loginError {
+            color: red;
+            display: none;
+            margin-top: 10px;
+        }
+
+        #whatsappContactBtn {
+            margin-left: 10px;
+            background-color: #25d366;
+            animation: buttonColorChange 1s infinite;
+        }
+
+        #whatsappContactBtn:hover {
+            background-color: #128C7E;
+        }
+
         @keyframes buttonColorChange {
             0% {
-                background-color: #25D366;
+                background-color: #FF5733;
             }
-            25% {
-                background-color: #075E54;
+            10% {
+                background-color: #33FF57;
+            }
+            20% {
+                background-color: #5733FF;
+            }
+            30% {
+                background-color: #FF33A1;
+            }
+            40% {
+                background-color: #33D4FF;
             }
             50% {
-                background-color: #128C7E;
+                background-color: #FF5733;
             }
-            75% {
-                background-color: #25D366;
+            60% {
+                background-color: #FFD700;
+            }
+            70% {
+                background-color: #FF6347;
+            }
+            80% {
+                background-color: #4CAF50;
+            }
+            90% {
+                background-color: #9C27B0;
             }
             100% {
-                background-color: #075E54;
+                background-color: #FF5733;
             }
         }
 
-        .demo-btn {
-            background-color: #FF9800;
-            margin-top: 20px;
-            width: 100%;
-            animation: demoButtonAnimation 2s infinite;
-        }
-
-        .demo-btn:hover {
-            background-color: #f57c00;
-        }
-
-        @keyframes demoButtonAnimation {
+        @keyframes dialogColorChange {
             0% {
-                background-color: #FF9800;
+                background-color: #FF5733;
+            }
+            10% {
+                background-color: #33FF57;
+            }
+            20% {
+                background-color: #5733FF;
+            }
+            30% {
+                background-color: #FF33A1;
+            }
+            40% {
+                background-color: #33D4FF;
             }
             50% {
-                background-color: #FFC107;
+                background-color: #FF5733;
+            }
+            60% {
+                background-color: #FFD700;
+            }
+            70% {
+                background-color: #FF6347;
+            }
+            80% {
+                background-color: #4CAF50;
+            }
+            90% {
+                background-color: #9C27B0;
             }
             100% {
-                background-color: #FF9800;
+                background-color: #FF5733;
             }
         }
 
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
+        #demoContent {
+            margin-top: 20px;
+            height: 200px;
+            overflow-y: scroll;
+            text-align: left;
+            padding: 10px;
+            background-color: #f4f4f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
         }
+
     </style>
 </head>
 <body>
 
-    <div class="login-container" id="loginDialog">
-        <h2>Login</h2>
-        <input type="text" id="username" class="input-field" placeholder="Username" />
-        <input type="password" id="password" class="input-field" placeholder="Password" />
-        
-        <!-- Login and WhatsApp buttons -->
-        <div style="display: flex; justify-content: space-between; width: 100%;">
-            <button id="loginBtn">Login</button>
-            <!-- WhatsApp button that redirects to WhatsApp chat with a message -->
-            <button id="whatsappBtn" onclick="window.location.href='https://wa.me/923321709972?text=HELLO,%20Developer%20HACKER%20TF'">WhatsApp Contact</button>
-        </div>
-        
-        <!-- Demo Button -->
-        <button class="demo-btn" id="demoBtn">Demo</button>
+    <div id="overlay"></div>
 
-        <p class="error-message" id="loginError">Incorrect Username or Password</p>
+    <div id="myDialog">
+        <button id="bismillahBtn">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</button>
+        <h3>Login</h3>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button id="loginBtn">Login</button>
+        <button id="whatsappContactBtn" onclick="window.location.href='https://wa.me/923321709972?text=HELLO,%20Developer%20HACKER%20TF'">WhatsApp Contact</button>
+        <button id="demoBtn">Demo</button>
+        <button id="darkModeBtn">Toggle Dark Mode</button>
+        <button id="closeDialog">Close</button>
+        <p id="loginError">Incorrect Username or Password</p>
+        <div id="demoContent">
+            𝗔𝗹𝗹 𝗧𝗵𝗶𝘀 𝗛𝗮𝗰𝗸𝗶𝗻𝗴 𝗔𝘃𝗮𝗹𝗶𝗯𝗹𝗲 𝗶𝗻 𝗟𝗼𝗪 𝗣𝗿𝗶𝗰𝗲😈✅💎🇵🇰✨💫🌟<br><br>
+            𝗔𝗹𝗹 𝗧𝗵𝗶𝘀 𝗔𝘃𝗮𝗹𝗶𝗯𝗹𝗲😈🎭🤍💫🌟<br><br>
+            𝗔𝗹𝗹 𝗛𝗮𝗰𝗸𝗶𝗻𝗴😎💪🔥🖤💫🌟✨😈🎭<br><br>
+            😈🌟𝗠𝗼𝗯𝗶𝗹𝗲 𝗛𝗮𝗰𝗸💫🎭<br><br>
+            😈🌟𝗔𝗻𝗱𝗿𝗼𝗶𝗱 𝗛𝗮𝗰𝗸💫🎭<br><br>
+            😈🌟𝗚𝗮𝗹𝗹𝗲𝗿𝘆 𝗛𝗮𝗰𝗸💫🎭<br><br>
+            😈🌟𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗛𝗮𝗰𝗸💫🎭<br><br>
+            😈🌟𝗪𝗵𝗮𝘁𝘀𝗮𝗽𝗽 𝗛𝗮𝗰𝗸💫🎭<br><br>
+            𝗧𝗶𝗸𝘁𝗼𝗸 𝗛𝗮𝗰𝗸💫🎭<br><br>
+            𝗠𝗮𝗻𝘆 𝗠𝗼𝗿𝗲 𝗛𝗮𝗰𝗸💫🎭<br><br>
+            <b>Cr𝗲𝗮𝗱𝗶𝘁 𝗕𝘆: 923321709972</b>
+        </div>
     </div>
 
     <script>
+        // Encrypting login credentials using Base64 encoding
+        const encryptedUsername = btoa('TF');  // Encrypt 'TF' to Base64
+        const encryptedPassword = btoa('TF');  // Encrypt 'TF' to Base64
+
+        const closeDialogBtn = document.getElementById('closeDialog');
         const loginBtn = document.getElementById('loginBtn');
+        const whatsappContactBtn = document.getElementById('whatsappContactBtn');
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const dialogBox = document.getElementById('myDialog');
+        const overlay = document.getElementById('overlay');
         const loginError = document.getElementById('loginError');
-        const loginDialog = document.getElementById('loginDialog');
         const demoBtn = document.getElementById('demoBtn');
 
-        const validUsername = 'TF'; // Set username to "TF"
-        const validPassword = 'TF'; // Set password to "TF"
+        // Close dialog
+        closeDialogBtn.onclick = function() {
+            dialogBox.style.display = 'none';
+            overlay.style.display = 'none';
+        }
 
         // Handle login functionality
         loginBtn.onclick = function() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            if (username === validUsername && password === validPassword) {
+            // Decrypting the encrypted credentials
+            const decryptedUsername = atob(encryptedUsername);
+            const decryptedPassword = atob(encryptedPassword);
+
+            // Check if username and password match the encrypted values
+            if (username === decryptedUsername && password === decryptedPassword) {
                 alert('Login Successful!');
-                // Hide login dialog after successful login
-                loginDialog.style.display = 'none';
+                dialogBox.style.display = 'none';
+                overlay.style.display = 'none';
             } else {
-                loginError.style.display = 'block'; // Show error message if login is incorrect
+                loginError.style.display = 'block';  // Incorrect credentials
             }
         }
 
-        // Demo Button click handler
+        // Close dialog if overlay is clicked
+        overlay.onclick = function() {
+            dialogBox.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        // Toggle Dark Mode
+        darkModeBtn.onclick = function() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Demo Button functionality
         demoBtn.onclick = function() {
             alert('Demo Button Clicked!');
         }
     </script>
 
 </body>
-</html>
+    </html>
