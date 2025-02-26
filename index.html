@@ -1,190 +1,112 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پرسنل ویب سائٹ</title>
-    <style>
-        /* بنیادی اسٹائل */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        /* لاگ ان ڈائیلاگ */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        /* ڈائیلاگ کے مواد کی اسٹائل */
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            animation: slideIn 0.5s ease-in-out;
-        }
-
-        /* کلوز بٹن */
-        .close-btn {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            cursor: pointer;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* فارم کی اسٹائل */
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-
-        input:focus {
-            background-color: #f0f8ff;
-            border-color: #4CAF50;
-        }
-
-        /* انیمیشن */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pak SIM Details</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      text-align: center;
+    }
+    .container h1 {
+      color: #4CAF50;
+    }
+    .input-field {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 2px solid #ccc;
+    }
+    .input-field:focus {
+      border-color: #4CAF50;
+    }
+    .button {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      display: none;
+    }
+    .result p {
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-    <!-- لاگ ان بٹن -->
-    <button id="loginBtn">لاگ ان کریں</button>
 
-    <!-- لاگ ان ڈائیلاگ -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>لاگ ان کریں</h2>
-            <form id="loginForm">
-                <label for="username">یوزرنیم:</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="password">پاسورڈ:</label>
-                <input type="password" id="password" name="password" required>
-
-                <button type="submit">لاگ ان</button>
-            </form>
-        </div>
+  <div class="container">
+    <h1>Pak SIM Details</h1>
+    <input type="text" id="simNumber" class="input-field" placeholder="Enter SIM Number" maxlength="11">
+    <button class="button" onclick="getSimDetails()">Get SIM Details</button>
+    <div id="result" class="result">
+      <p><strong>Network:</strong> <span id="network"></span></p>
+      <p><strong>Location:</strong> <span id="location"></span></p>
+      <p><strong>Operator:</strong> <span id="operator"></span></p>
     </div>
+  </div>
 
-    <script>
-        // لاگ ان ڈائیلاگ کو کھولنے اور بند کرنے کی فنکشن
-        var modal = document.getElementById("loginModal");
-        var btn = document.getElementById("loginBtn");
-        var span = document.getElementsByClassName("close-btn")[0];
+  <script>
+    // Function to fetch SIM details from the API
+    function getSimDetails() {
+      var simNumber = document.getElementById('simNumber').value;
 
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
+      // Check if the entered number is 11 digits long (Pakistan SIM numbers)
+      if (simNumber.length === 11) {
+        // Construct the API URL dynamically with the user input
+        var apiUrl = 'https://fam-official.serv00.net/sim/api.php?num=' + simNumber;
 
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-        // فارم سبمٹ ہونے پر لاگ ان کی تصدیق
-        document.getElementById("loginForm").onsubmit = function(event) {
-            event.preventDefault(); // فارم کو خود بخود سبمٹ ہونے سے روکتا ہے
-
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            // یہاں آپ یوزرنیم اور پاسورڈ کی تصدیق کر سکتے ہیں
-            if (username == "your_username" && password == "your_password") {
-                alert("آپ کا لاگ ان کامیاب ہو چکا ہے!");
-                modal.style.display = "none"; // لاگ ان ہونے کے بعد ڈائیلاگ کو بند کر دیں
+        // Fetch the data from the API
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+            // Check if the data contains the expected details
+            if (data && data.network && data.location && data.operator) {
+              // Display the SIM details in the result section
+              document.getElementById('result').style.display = 'block';
+              document.getElementById('network').textContent = data.network;
+              document.getElementById('location').textContent = data.location;
+              document.getElementById('operator').textContent = data.operator;
             } else {
-                alert("غلط یوزرنیم یا پاسورڈ!");
+              alert("No details found for this SIM number.");
             }
-        }
-    </script>
+          })
+          .catch(error => {
+            alert('Error fetching SIM details: ' + error);
+          });
+      } else {
+        alert("Please enter a valid 11-digit SIM number.");
+      }
+    }
+  </script>
+
 </body>
 </html>
