@@ -22,26 +22,29 @@
             flex-direction: column;
             text-align: center;
         }
-        .login-container, .dialog-box {
+        .login-container {
             background: #222;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
-            text-align: center;
         }
         h2 { color: #00ffcc; margin-bottom: 15px; text-transform: uppercase; font-size: 22px; }
-        input, button {
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; text-align: center; }
+        button {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
             border-radius: 5px;
+            font-size: 14px;
             border: none;
-            text-align: center;
+            cursor: pointer;
             font-weight: bold;
+            margin-top: 10px;
         }
         .login-btn { background-color: #00ffcc; color: black; }
-        .close-btn, .logout-btn { background-color: #ff4444; color: white; }
+        .help-btn, .logout-btn, .close-btn { background-color: #ff4444; color: white; }
         .hidden { display: none; }
+
+        /* Scrollable Dialog Box */
         .dialog-container {
             position: fixed;
             top: 0;
@@ -54,20 +57,32 @@
             align-items: center;
             display: none;
         }
-        
-        /* ✅ Buttons Container Scrollable */
+        .dialog-box {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
         .buttons-container {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 10px;
-            max-height: 400px; /* 👈 Adjust height */
-            overflow-y: auto;  /* 👈 Scroll Enable */
-            padding: 10px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 60vh;
         }
-        
+
         .dynamic-button {
             width: 100%;
             height: 50px;
+            border: none;
             border-radius: 8px;
             font-weight: bold;
             color: white;
@@ -75,19 +90,25 @@
             background: linear-gradient(45deg, #ff4444, #00ffcc);
             cursor: pointer;
         }
-        .dynamic-button:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(0, 255, 204, 0.7); }
+        .dynamic-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+        }
     </style>
 </head>
 <body>
 
+    <!-- Login Form -->
     <div class="login-container" id="loginContainer">
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Enter Username">
         <input type="password" id="password" placeholder="Enter Password">
         <button class="login-btn" onclick="checkLogin()">Login</button>
+        <button class="help-btn" onclick="openWhatsApp()">Help</button>
         <p id="error-message" style="color:red;"></p>
     </div>
 
+    <!-- Main Dialog Box After Login -->
     <div class="dialog-container" id="dialogBox">
         <div class="dialog-box">
             <h2>HACKER TF</h2>
@@ -108,6 +129,7 @@
         function checkLogin() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
+
             if (username === "TF" && password === "TF") {
                 localStorage.setItem("isLoggedIn", "true");
                 document.getElementById("loginContainer").classList.add("hidden");
@@ -120,6 +142,10 @@
         function logout() {
             localStorage.removeItem("isLoggedIn");
             location.reload();
+        }
+
+        function openWhatsApp() {
+            window.open("https://wa.me/923321709972?text=Hello, I need help!", "_blank");
         }
 
         function openDialog() {
@@ -138,30 +164,37 @@
             var buttonsData = [
                 { text: "WhatsApp Gold", link: "https://media4.appsfire.co/file/wa2-abo3rab-apk" },
                 { text: "WhatsApp Red", link: "https://media4.appsfire.co/file/wa3-abo3rab-apk" },
-                { text: "Message Send Without Unblock", link: "https://youtu.be/-1iLdsNkRuY?si=efNxizhIgUUMEI3A" },
                 { text: "YouTube Views", link: "https://drive.google.com/drive/folders/13x0s1poBwFmOvZfppvWXB5eTZWE_DFdA?usp=drive_link" },
-
-                // ✅ Naye Buttons Added
-                { text: "Mobile Hack", link: "https://www.mediafire.com/file/9mmxeb4elxvek5q/Mobile_Hack.7z/file" },
-                { text: "WhatsApp Hack", link: "https://www.mediafire.com/file/tzsvwkgfqknutcg/Whatsapp_Hack.7z/file" },
-                { text: "Facebook Hack", link: "https://www.mediafire.com/file/rsi4amf9pobui6f/Facebook_Hack.7z/file" },
-                { text: "Instagram Hack", link: "https://www.mediafire.com/file/cdb3siibhivex8c/Instagram_Hack.7z/file" },
-                { text: "TikTok Hack", link: "https://www.mediafire.com/file/ppezg901kv3yq0v/TikTok_Hack.7z/file" },
-                { text: "Telegram Hack", link: "https://www.mediafire.com/file/i9rb75gcz23a824/Telegram_Hack.7z/file" },
-                { text: "Gallery Hack", link: "https://www.mediafire.com/file/lp2rmu4l1cpwglv/Gallery_Hack.7z/file" },
-                { text: "PUBG Game Hack", link: "https://www.mediafire.com/file/pobbgvu1w5ip088/PUBG_Mobile_Hack.7z/file" },
-                { text: "Free Fire Game Hack", link: "https://www.mediafire.com/file/67wafqmb05fpjsi/Free_Fire_Hack.7z/file" },
-                { text: "Fake Payment Screenshot", link: "https://www.mediafire.com/file/4pq81bytjlu12fe/Fake_Payment_Screenshot.7z/file" },
-                { text: "Prank Fake Screenshot", link: "https://www.mediafire.com/file/lvyqt2m61r50axk/Prank_Fake_Screenshot.7z/file" }
+                { text: "TelegramBots", action: openTelegramBotsDialog }
             ];
 
             buttonsData.forEach((data) => {
                 var btn = document.createElement("button");
                 btn.className = "dynamic-button";
                 btn.textContent = data.text;
-                btn.onclick = () => window.open(data.link, "_blank");
+                btn.onclick = data.link ? () => window.open(data.link, "_blank") : data.action;
                 container.appendChild(btn);
             });
+        }
+
+        function openTelegramBotsDialog() {
+            var dialog = document.createElement("div");
+            dialog.className = "dialog-container";
+            dialog.innerHTML = `
+                <div class="dialog-box">
+                    <h2>Telegram All Bots</h2>
+                    <p style="text-align:left; font-size:12px; white-space: pre-wrap; max-height: 60vh; overflow-y: auto;">
+                        1. @Gwy7_bot
+                        2. @Lightingup_bot
+                        3. @Noob_X_Vamp_bot
+                        ...
+                        110. @Downloadthumbnailbot
+                    </p>
+                    <button class="close-btn" onclick="this.parentElement.parentElement.remove()">Close</button>
+                </div>
+            `;
+            document.body.appendChild(dialog);
+            dialog.style.display = "flex";
         }
     </script>
 
