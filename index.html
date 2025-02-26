@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Mods Download</title>
+    <title>HACKER TF</title>
     <style>
         * {
             font-family: 'Poppins', sans-serif;
@@ -28,41 +28,21 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
             text-align: center;
-            animation: fadeIn 1s ease-in-out;
         }
-        h2 {
-            color: #00ffcc;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            font-size: 22px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: none;
-            text-align: center;
-        }
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
+        h2 { color: #00ffcc; margin-bottom: 15px; text-transform: uppercase; font-size: 22px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; text-align: center; }
         button {
-            width: 48%;
+            width: 100%;
             padding: 10px;
             border-radius: 5px;
             font-size: 14px;
             border: none;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.3s;
+            margin-top: 10px;
         }
         .login-btn { background-color: #00ffcc; color: black; }
-        .help-btn { background-color: #ff4444; color: white; }
-        .logout-btn { background-color: #ff4444; color: white; margin-top: 15px; width: 100%; }
-
+        .help-btn, .logout-btn, .close-btn { background-color: #ff4444; color: white; }
         .hidden { display: none; }
 
         /* Dialog Box */
@@ -86,29 +66,9 @@
             text-align: center;
             width: 80%;
             max-width: 400px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        .close-btn {
-            background: #ff4444;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
         }
 
-        /* Buttons Inside Dialog */
-        .buttons-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            width: 100%;
-        }
+        .buttons-container { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
         .dynamic-button {
             width: 100%;
             height: 50px;
@@ -119,12 +79,35 @@
             font-size: 16px;
             background: linear-gradient(45deg, #ff4444, #00ffcc);
             cursor: pointer;
-            transition: transform 0.2s ease-in-out;
         }
-        .dynamic-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+        .dynamic-button:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(0, 255, 204, 0.7); }
+
+        /* Termux Tools Dialog */
+        .termux-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
         }
+        .termux-box {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            text-align: left;
+            width: 80%;
+            max-width: 400px;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        pre { white-space: pre-wrap; color: #00ffcc; font-size: 14px; }
+        .telegram-link { display: block; text-align: center; margin-top: 10px; color: #00ffcc; }
     </style>
 </head>
 <body>
@@ -134,20 +117,39 @@
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Enter Username">
         <input type="password" id="password" placeholder="Enter Password">
-        <div class="button-container">
-            <button class="login-btn" onclick="checkLogin()">Login</button>
-            <button class="help-btn" onclick="openWhatsApp()">Help</button>
-        </div>
+        <button class="login-btn" onclick="checkLogin()">Login</button>
+        <button class="help-btn" onclick="openWhatsApp()">Help</button>
         <p id="error-message" style="color:red;"></p>
     </div>
 
-    <!-- Dialog Box After Login -->
+    <!-- Main Dialog Box After Login -->
     <div class="dialog-container" id="dialogBox">
         <div class="dialog-box">
-            <h2>WhatsApp Mods Download</h2>
+            <h2>HACKER TF</h2>
             <div class="buttons-container" id="dynamicButtons"></div>
             <button class="close-btn" onclick="closeDialog()">Close</button>
             <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Termux Tools Dialog -->
+    <div class="termux-dialog" id="termuxDialog">
+        <div class="termux-box">
+            <h2>Termux Tools</h2>
+            <pre>
+$ apt update && apt upgrade -y
+$ apt install git
+$ apt install python2
+$ git clone https://github.com/derv82/wifite.git
+$ cd wifite
+$ python2 wifite.py
+$ git clone https://github.com/derv82/wifite2
+$ cd wifite2
+$ python2 Wifite.py
+            </pre>
+            <p>NOW ENJOY AND USE THE TOOL... 🫡</p>
+            <a href="https://t.me/blackhackerpro_756" class="telegram-link">Join Telegram</a>
+            <button class="close-btn" onclick="closeTermuxDialog()">Close</button>
         </div>
     </div>
 
@@ -178,8 +180,7 @@
         }
 
         function openWhatsApp() {
-            var whatsappURL = "https://wa.me/923321709972?text=Hello, I need help!";
-            window.open(whatsappURL, "_blank");
+            window.open("https://wa.me/923321709972?text=Hello, I need help!", "_blank");
         }
 
         function openDialog() {
@@ -191,25 +192,27 @@
             document.getElementById("dialogBox").style.display = "none";
         }
 
+        function openTermuxDialog() {
+            document.getElementById("termuxDialog").style.display = "flex";
+        }
+
+        function closeTermuxDialog() {
+            document.getElementById("termuxDialog").style.display = "none";
+        }
+
         function generateButtons() {
             var container = document.getElementById("dynamicButtons");
             container.innerHTML = "";
 
             var buttonsData = [
-                { text: "WhatsApp Gold", link: "https://media4.appsfire.co/file/wa2-abo3rab-apk" },
-                { text: "WhatsApp Red", link: "https://media4.appsfire.co/file/wa3-abo3rab-apk" },
-                { text: "AG WhatsApp", link: "https://media4.appsfire.co/file/ag-whatsapp-by-assem-apk" },
-                { text: "AG2 WhatsApp", link: "https://media4.appsfire.co/file/ag2-whatsapp-by-assem-apk" },
-                { text: "AG3 WhatsApp", link: "https://media4.appsfire.co/file/ag3-whatsapp-by-assem-apk" },
-                { text: "WhatsApp Business", link: "https://media4.appsfire.co/file/wa-abo3rab-apk" },
-                { text: "WhatsApp Blue", link: "https://media4.appsfire.co/file/wa4-abo3rab-apk" },
-                { text: "Message Send Without Unblock", link: "https://youtu.be/-1iLdsNkRuY?si=efNxizhIgUUMEI3A" }
+                { text: "Message Send Without Unblock", link: "https://youtu.be/-1iLdsNkRuY?si=efNxizhIgUUMEI3A" },
+                { text: "Termux Tools <<", action: openTermuxDialog }
             ];
             buttonsData.forEach((data) => {
                 var btn = document.createElement("button");
                 btn.className = "dynamic-button";
                 btn.textContent = data.text;
-                btn.onclick = function() { window.open(data.link, "_blank"); };
+                btn.onclick = data.link ? () => window.open(data.link, "_blank") : data.action;
                 container.appendChild(btn);
             });
         }
