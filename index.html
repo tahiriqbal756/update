@@ -6,7 +6,7 @@
   <title>Pak SIM Details</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f5f5f5;
       display: flex;
       justify-content: center;
@@ -67,6 +67,7 @@
     <h1>Pak SIM Details</h1>
     <input type="text" id="simNumber" class="input-field" placeholder="Enter SIM Number" maxlength="11">
     <button class="button" onclick="getSimDetails()">Get SIM Details</button>
+
     <div id="result" class="result">
       <p><strong>Network:</strong> <span id="network"></span></p>
       <p><strong>Location:</strong> <span id="location"></span></p>
@@ -75,20 +76,23 @@
   </div>
 
   <script>
-    // Function to fetch SIM details from the API
     function getSimDetails() {
       var simNumber = document.getElementById('simNumber').value;
 
-      // Check if the entered number is 11 digits long (Pakistan SIM numbers)
+      // Check if the entered number is valid (11 digits long)
       if (simNumber.length === 11) {
-        // Construct the API URL dynamically with the user input
         var apiUrl = 'https://fam-official.serv00.net/sim/api.php?num=' + simNumber;
 
-        // Fetch the data from the API
+        // Fetch the SIM details from the API
         fetch(apiUrl)
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+          })
           .then(data => {
-            // Check if the data contains the expected details
+            // Check if the response contains the required details
             if (data && data.network && data.location && data.operator) {
               // Display the SIM details in the result section
               document.getElementById('result').style.display = 'block';
@@ -96,10 +100,11 @@
               document.getElementById('location').textContent = data.location;
               document.getElementById('operator').textContent = data.operator;
             } else {
-              alert("No details found for this SIM number.");
+              alert('No details found for this SIM number.');
             }
           })
           .catch(error => {
+            console.error('Error fetching SIM details:', error);
             alert('Error fetching SIM details: ' + error);
           });
       } else {
