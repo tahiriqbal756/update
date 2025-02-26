@@ -3,42 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Login with Dialogs</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Animated Login & Buttons</title>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #121212;
+            color: white;
+        }
+        .login-container {
+            position: fixed;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h2 {
+            color: #00ffcc;
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        button {
+            width: 48%;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .login-btn { background-color: #00ffcc; color: black; }
+        .help-btn { background-color: #ff4444; color: white; }
+        .hidden { display: none; }
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            width: 90%;
+        }
+        .dynamic-button {
+            width: 80px;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+            transition: background 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+    </style>
 </head>
 <body>
 
-    <button class="open-login" onclick="openLogin()">Open Login</button>
-
-    <div class="login-dialog" id="loginDialog">
-        <div class="login-content">
-            <span class="close" onclick="closeLogin()">&times;</span>
-            <h2>Login</h2>
-            <input type="text" id="username" placeholder="Enter Username">
-            <button onclick="checkLogin()">Login</button>
-            <p id="error-message"></p>
-            <button class="whatsapp-button" onclick="contactWhatsApp()">Contact on WhatsApp</button>
+    <!-- Login Popup -->
+    <div class="login-container" id="loginContainer">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter Username">
+        <input type="password" id="password" placeholder="Enter Password">
+        <div class="button-container">
+            <button class="login-btn" onclick="checkLogin()">Login</button>
+            <button class="help-btn" onclick="openWhatsApp()">Help</button>
         </div>
+        <p id="error-message" style="color:red;"></p>
     </div>
 
-    <div class="main-dialog" id="mainDialog">
-        <div class="main-content">
-            <span class="close" onclick="closeMainDialog()">&times;</span>
-            <h2>Welcome, Tahir!</h2>
-            <button class="download-button" onclick="downloadApp()">Download</button>
-            <button class="demo-button" onclick="openDemoDialog()">Demo</button>
-        </div>
+    <!-- Buttons After Login -->
+    <div class="hidden" id="buttonsContainer">
+        <h2>Welcome! Choose an Option:</h2>
+        <div class="buttons-container" id="dynamicButtons"></div>
     </div>
 
-    <div class="demo-dialog" id="demoDialog">
-        <div class="demo-content">
-            <span class="close" onclick="closeDemoDialog()">&times;</span>
-            <h2>Demo Options</h2>
-            <button onclick="alert('Option 1 Selected')">Option 1</button>
-            <button onclick="alert('Option 2 Selected')">Option 2</button>
-        </div>
-    </div>
+    <script>
+        function checkLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
 
-    <script src="script.js"></script>
+            if (username === "Tahiriqbal" && password === "Tahiriqbal") {
+                document.getElementById("loginContainer").classList.add("hidden");
+                document.getElementById("buttonsContainer").classList.remove("hidden");
+                generateButtons();
+            } else {
+                document.getElementById("error-message").textContent = "Invalid Username or Password!";
+            }
+        }
+
+        function openWhatsApp() {
+            var whatsappURL = "https://wa.me/923321709972?text=Hello, I need help!";
+            window.open(whatsappURL, "_blank");
+        }
+
+        function generateButtons() {
+            var container = document.getElementById("dynamicButtons");
+            for (var i = 1; i <= 50; i++) {
+                var btn = document.createElement("button");
+                btn.className = "dynamic-button";
+                btn.textContent = "Button " + i;
+                container.appendChild(btn);
+            }
+            changeColors();
+        }
+
+        function changeColors() {
+            setInterval(() => {
+                document.querySelectorAll('.dynamic-button').forEach(button => {
+                    button.style.backgroundColor = getRandomColor();
+                });
+            }, 1000);
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+    </script>
+
 </body>
 </html>
