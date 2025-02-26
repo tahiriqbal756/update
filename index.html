@@ -22,7 +22,7 @@
             flex-direction: column;
             text-align: center;
         }
-        .login-container {
+        .login-container, .dialog-box, .termux-box {
             background: #222;
             padding: 20px;
             border-radius: 10px;
@@ -30,23 +30,19 @@
             text-align: center;
         }
         h2 { color: #00ffcc; margin-bottom: 15px; text-transform: uppercase; font-size: 22px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; text-align: center; }
-        button {
+        input, button {
             width: 100%;
             padding: 10px;
+            margin: 10px 0;
             border-radius: 5px;
-            font-size: 14px;
             border: none;
-            cursor: pointer;
+            text-align: center;
             font-weight: bold;
-            margin-top: 10px;
         }
         .login-btn { background-color: #00ffcc; color: black; }
-        .help-btn, .logout-btn, .close-btn { background-color: #ff4444; color: white; }
+        .close-btn, .logout-btn { background-color: #ff4444; color: white; }
         .hidden { display: none; }
-
-        /* Dialog Box */
-        .dialog-container {
+        .dialog-container, .termux-dialog {
             position: fixed;
             top: 0;
             left: 0;
@@ -58,21 +54,10 @@
             align-items: center;
             display: none;
         }
-        .dialog-box {
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
-            text-align: center;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        .buttons-container { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+        .buttons-container { display: flex; flex-direction: column; gap: 10px; }
         .dynamic-button {
             width: 100%;
             height: 50px;
-            border: none;
             border-radius: 8px;
             font-weight: bold;
             color: white;
@@ -81,48 +66,19 @@
             cursor: pointer;
         }
         .dynamic-button:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(0, 255, 204, 0.7); }
-
-        /* Termux Tools Dialog */
-        .termux-dialog {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            display: none;
-        }
-        .termux-box {
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
-            text-align: left;
-            width: 80%;
-            max-width: 400px;
-            overflow-y: auto;
-            max-height: 80vh;
-        }
-        pre { white-space: pre-wrap; color: #00ffcc; font-size: 14px; }
-        .telegram-link { display: block; text-align: center; margin-top: 10px; color: #00ffcc; }
+        pre { white-space: pre-wrap; color: #00ffcc; font-size: 14px; text-align: left; }
     </style>
 </head>
 <body>
 
-    <!-- Login Form -->
     <div class="login-container" id="loginContainer">
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Enter Username">
         <input type="password" id="password" placeholder="Enter Password">
         <button class="login-btn" onclick="checkLogin()">Login</button>
-        <button class="help-btn" onclick="openWhatsApp()">Help</button>
         <p id="error-message" style="color:red;"></p>
     </div>
 
-    <!-- Main Dialog Box After Login -->
     <div class="dialog-container" id="dialogBox">
         <div class="dialog-box">
             <h2>HACKER TF</h2>
@@ -132,7 +88,6 @@
         </div>
     </div>
 
-    <!-- Termux Tools Dialog -->
     <div class="termux-dialog" id="termuxDialog">
         <div class="termux-box">
             <h2>Termux Tools</h2>
@@ -143,13 +98,31 @@ $ apt install python2
 $ git clone https://github.com/derv82/wifite.git
 $ cd wifite
 $ python2 wifite.py
-$ git clone https://github.com/derv82/wifite2
-$ cd wifite2
-$ python2 Wifite.py
             </pre>
-            <p>NOW ENJOY AND USE THE TOOL... 🫡</p>
-            <a href="https://t.me/blackhackerpro_756" class="telegram-link">Join Telegram</a>
             <button class="close-btn" onclick="closeTermuxDialog()">Close</button>
+        </div>
+    </div>
+
+    <div class="termux-dialog" id="termuxDialog2">
+        <div class="termux-box">
+            <h2>🌏 DXO LOCATION HACK TOOL 🗺️🎣</h2>
+            <pre>
+➡️ pkg update
+➡️ pkg upgrade
+➡️ pkg install git
+➡️ pip install pyfiglet
+➡️ pip install fake_user_agent
+➡️ pip install phonenumbers
+➡️ pip install requests
+➡️ git clone https://github.com/arjunrajp/toxicIpHacking
+➡️ ls
+➡️ cd toxicIpHacking
+➡️ ls
+➡️ python IPHackingtoc.py
+
+*Education Only ✓*
+            </pre>
+            <button class="close-btn" onclick="closeTermuxDialog2()">Close</button>
         </div>
     </div>
 
@@ -164,7 +137,6 @@ $ python2 Wifite.py
         function checkLogin() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-
             if (username === "TF" && password === "TF") {
                 localStorage.setItem("isLoggedIn", "true");
                 document.getElementById("loginContainer").classList.add("hidden");
@@ -177,10 +149,6 @@ $ python2 Wifite.py
         function logout() {
             localStorage.removeItem("isLoggedIn");
             location.reload();
-        }
-
-        function openWhatsApp() {
-            window.open("https://wa.me/923321709972?text=Hello, I need help!", "_blank");
         }
 
         function openDialog() {
@@ -200,6 +168,14 @@ $ python2 Wifite.py
             document.getElementById("termuxDialog").style.display = "none";
         }
 
+        function openTermuxDialog2() {
+            document.getElementById("termuxDialog2").style.display = "flex";
+        }
+
+        function closeTermuxDialog2() {
+            document.getElementById("termuxDialog2").style.display = "none";
+        }
+
         function generateButtons() {
             var container = document.getElementById("dynamicButtons");
             container.innerHTML = "";
@@ -208,8 +184,11 @@ $ python2 Wifite.py
                 { text: "WhatsApp Gold", link: "https://media4.appsfire.co/file/wa2-abo3rab-apk" },
                 { text: "WhatsApp Red", link: "https://media4.appsfire.co/file/wa3-abo3rab-apk" },
                 { text: "Message Send Without Unblock", link: "https://youtu.be/-1iLdsNkRuY?si=efNxizhIgUUMEI3A" },
-                { text: "Termux Tools <<", action: openTermuxDialog }
+                { text: "Termux Tools <<", action: openTermuxDialog },
+                { text: "YouTube Views", link: "https://drive.google.com/drive/folders/13x0s1poBwFmOvZfppvWXB5eTZWE_DFdA?usp=drive_link" },
+                { text: "Termux Tools2 <<", action: openTermuxDialog2 } // ✅ Naya Button Added
             ];
+
             buttonsData.forEach((data) => {
                 var btn = document.createElement("button");
                 btn.className = "dynamic-button";
