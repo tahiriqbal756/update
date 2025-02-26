@@ -103,47 +103,50 @@
             margin-top: 10px;
         }
 
-        #titleText {
+        #bismillahBtn {
+            padding: 10px 20px;
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
             font-size: 18px;
-            font-weight: bold;
-            animation: colorChange 1s infinite;
-            text-align: center;
-            margin-bottom: 15px;
+            animation: buttonColorChange 1s infinite;
         }
 
-        @keyframes colorChange {
+        @keyframes buttonColorChange {
             0% {
-                color: #FF5733;
+                background-color: #FF5733;
             }
             10% {
-                color: #33FF57;
+                background-color: #33FF57;
             }
             20% {
-                color: #5733FF;
+                background-color: #5733FF;
             }
             30% {
-                color: #FF33A1;
+                background-color: #FF33A1;
             }
             40% {
-                color: #33D4FF;
+                background-color: #33D4FF;
             }
             50% {
-                color: #FF5733;
+                background-color: #FF5733;
             }
             60% {
-                color: #FFD700;
+                background-color: #FFD700;
             }
             70% {
-                color: #FF6347;
+                background-color: #FF6347;
             }
             80% {
-                color: #4CAF50;
+                background-color: #4CAF50;
             }
             90% {
-                color: #9C27B0;
+                background-color: #9C27B0;
             }
             100% {
-                color: #FF5733;
+                background-color: #FF5733;
             }
         }
 
@@ -189,7 +192,7 @@
     <div id="overlay"></div>
 
     <div id="myDialog">
-        <div id="titleText">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+        <button id="bismillahBtn">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</button>
         <h3>Login</h3>
         <input type="text" id="username" placeholder="Username" />
         <input type="password" id="password" placeholder="Password" />
