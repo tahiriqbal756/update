@@ -54,7 +54,17 @@
             align-items: center;
             display: none;
         }
-        .buttons-container { display: flex; flex-direction: column; gap: 10px; }
+        
+        /* ✅ Buttons Container Scrollable */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 400px; /* 👈 Adjust height */
+            overflow-y: auto;  /* 👈 Scroll Enable */
+            padding: 10px;
+        }
+        
         .dynamic-button {
             width: 100%;
             height: 50px;
