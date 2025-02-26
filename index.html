@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>TF Tools</title>
   <style>
+    /* General Body Style */
     body {
       font-family: 'Arial', sans-serif;
       background: linear-gradient(45deg, #111, #333);
@@ -19,18 +20,19 @@
       flex-direction: column;
     }
 
+    /* Login Form Container */
     .login-container {
       width: 100%;
-      max-width: 450px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 50px;
-      border-radius: 10px;
+      max-width: 400px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 40px;
+      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
       animation: fadeIn 1s ease-out;
     }
 
-    h1 {
+    .login-container h1 {
       margin-bottom: 20px;
       font-size: 40px;
       color: #FF5733;
@@ -38,11 +40,12 @@
       animation: fadeIn 1s ease-in;
     }
 
+    /* Input Fields */
     input {
       width: 100%;
       padding: 15px;
       margin: 15px 0;
-      border-radius: 5px;
+      border-radius: 10px;
       border: none;
       background: #444;
       color: #fff;
@@ -55,12 +58,13 @@
       background: #555;
     }
 
+    /* Login Button */
     button {
       width: 100%;
       padding: 15px;
       background: #28a745;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       font-size: 18px;
       cursor: pointer;
       margin: 10px 0;
@@ -73,12 +77,61 @@
       background: #218838;
     }
 
+    /* Animation for Fade-In */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Animation for Dialog Box */
+    @keyframes dialogAnimation {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    /* Dialog Box Styling */
+    .dialog {
+      background: #333;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 600px;
+      display: none;
+      animation: dialogAnimation 1s ease-out;
+    }
+
+    /* Dialog Button Styling */
+    .dialog button {
+      background: #28a745;
+      margin: 15px 0;
+      font-size: 18px;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      animation: fadeIn 2s ease-in 1s forwards;
+    }
+
+    .dialog button:hover {
+      background: #218838;
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+
+    /* Contact & Help Buttons */
     .help-button, .contact-button {
       position: absolute;
       padding: 10px 20px;
       background: #007bff;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       font-size: 16px;
       cursor: pointer;
       animation: slideIn 1s ease-in-out;
@@ -94,58 +147,9 @@
       right: 20px;
     }
 
-    .dialog {
-      background: #333;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 600px;
-      display: none;
-      animation: dialogAnimation 1s ease-out;
-    }
-
-    .dialog button {
-      background: #28a745;
-      margin: 10px;
-      font-size: 16px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
     @keyframes slideIn {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes dialogAnimation {
-      0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-      }
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(0); }
     }
   </style>
 </head>
