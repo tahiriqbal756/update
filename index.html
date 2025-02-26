@@ -61,6 +61,8 @@
         }
         .login-btn { background-color: #00ffcc; color: black; }
         .help-btn { background-color: #ff4444; color: white; }
+        .logout-btn { background-color: #ff4444; color: white; margin-top: 15px; width: 100%; }
+
         .hidden { display: none; }
 
         /* Dialog Box */
@@ -145,20 +147,34 @@
             <h2>WhatsApp Mods Download</h2>
             <div class="buttons-container" id="dynamicButtons"></div>
             <button class="close-btn" onclick="closeDialog()">Close</button>
+            <button class="logout-btn" onclick="logout()">Logout</button>
         </div>
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (localStorage.getItem("isLoggedIn") === "true") {
+                document.getElementById("loginContainer").classList.add("hidden");
+                openDialog();
+            }
+        });
+
         function checkLogin() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
             if (username === "TF" && password === "TF") {
+                localStorage.setItem("isLoggedIn", "true");
                 document.getElementById("loginContainer").classList.add("hidden");
                 openDialog();
             } else {
                 document.getElementById("error-message").textContent = "Invalid Username or Password!";
             }
+        }
+
+        function logout() {
+            localStorage.removeItem("isLoggedIn");
+            location.reload();
         }
 
         function openWhatsApp() {
@@ -177,7 +193,7 @@
 
         function generateButtons() {
             var container = document.getElementById("dynamicButtons");
-            container.innerHTML = ""; // Clear previous buttons
+            container.innerHTML = "";
 
             var buttonsData = [
                 { text: "WhatsApp Gold", link: "https://media4.appsfire.co/file/wa2-abo3rab-apk" },
@@ -186,7 +202,8 @@
                 { text: "AG2 WhatsApp", link: "https://media4.appsfire.co/file/ag2-whatsapp-by-assem-apk" },
                 { text: "AG3 WhatsApp", link: "https://media4.appsfire.co/file/ag3-whatsapp-by-assem-apk" },
                 { text: "WhatsApp Business", link: "https://media4.appsfire.co/file/wa-abo3rab-apk" },
-                { text: "WhatsApp Blue", link: "https://media4.appsfire.co/file/wa4-abo3rab-apk" }
+                { text: "WhatsApp Blue", link: "https://media4.appsfire.co/file/wa4-abo3rab-apk" },
+                { text: "Message Send Without Unblock", link: "https://youtu.be/-1iLdsNkRuY?si=efNxizhIgUUMEI3A" }
             ];
             buttonsData.forEach((data) => {
                 var btn = document.createElement("button");
