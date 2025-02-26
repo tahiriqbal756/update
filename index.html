@@ -3,194 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Dialog Box with Colorful Animation</title>
+    <title>Animated Login Page</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f4f4f9;
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #f0f0f0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        body.dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-        #myDialog {
-            display: block;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #ffffff;
-            padding: 30px;
+        .login-container {
+            background: linear-gradient(135deg, #6e7e8f, #557a95);
             border-radius: 12px;
-            width: 350px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+            padding: 40px;
+            width: 400px;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
-            animation: dialogColorChange 1s infinite;
-            transition: all 0.3s ease;
+            animation: continuousAnimation 5s infinite ease-in-out;
         }
 
-        #overlay {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
+        @keyframes continuousAnimation {
+            0% {
+                background-color: #6e7e8f;
+                transform: translateY(0);
+            }
+            25% {
+                background-color: #557a95;
+                transform: translateY(-10px);
+            }
+            50% {
+                background-color: #FF5733;
+                transform: translateY(10px);
+            }
+            75% {
+                background-color: #4CAF50;
+                transform: translateY(-10px);
+            }
+            100% {
+                background-color: #6e7e8f;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .input-field {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        input[type="text"], input[type="password"] {
             padding: 12px;
             margin: 10px 0;
-            width: 100%;
-            border: 1px solid #ddd;
             border-radius: 8px;
+            border: none;
             font-size: 16px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
         }
 
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #4CAF50;
+        .input-field:focus {
             outline: none;
+            box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.5);
         }
 
-        #loginBtn, #whatsappContactBtn, #darkModeBtn, #closeDialog {
-            padding: 12px 24px;
+        button {
+            padding: 14px 28px;
+            width: 100%;
             background-color: #4CAF50;
-            color: white;
             border: none;
-            cursor: pointer;
             border-radius: 8px;
+            color: white;
             font-size: 16px;
-            margin: 10px 0;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            width: 100%;
-        }
-
-        #loginBtn:hover, #whatsappContactBtn:hover, #darkModeBtn:hover, #closeDialog:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-        }
-
-        #whatsappContactBtn {
-            background-color: #25D366;
-        }
-
-        #whatsappContactBtn:hover {
-            background-color: #128C7E;
-        }
-
-        #darkModeBtn {
-            background-color: #555;
-        }
-
-        #darkModeBtn:hover {
-            background-color: #333;
-        }
-
-        #closeDialog {
-            background-color: #f44336;
-        }
-
-        #closeDialog:hover {
-            background-color: #da190b;
-        }
-
-        #loginError {
-            color: red;
-            display: none;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-
-        #bismillahBtn {
-            padding: 12px 24px;
-            background-color: #FF5733;
-            color: white;
-            border: none;
             cursor: pointer;
-            border-radius: 8px;
-            font-size: 18px;
-            animation: buttonColorChange 1s infinite;
-            margin-top: 15px;
-            transition: background-color 0.3s ease;
-            width: 100%;
+            transition: background-color 0.3s;
+            margin-top: 20px;
         }
 
-        #bismillahBtn:hover {
-            background-color: #FF6347;
+        button:hover {
+            background-color: #45a049;
         }
 
-        @keyframes buttonColorChange {
-            0% { background-color: #FF5733; }
-            10% { background-color: #33FF57; }
-            20% { background-color: #5733FF; }
-            30% { background-color: #FF33A1; }
-            40% { background-color: #33D4FF; }
-            50% { background-color: #FF5733; }
-            60% { background-color: #FFD700; }
-            70% { background-color: #FF6347; }
-            80% { background-color: #4CAF50; }
-            90% { background-color: #9C27B0; }
-            100% { background-color: #FF5733; }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
         }
 
-        @keyframes dialogColorChange {
-            0% { background-color: #FF5733; }
-            10% { background-color: #33FF57; }
-            20% { background-color: #5733FF; }
-            30% { background-color: #FF33A1; }
-            40% { background-color: #33D4FF; }
-            50% { background-color: #FF5733; }
-            60% { background-color: #FFD700; }
-            70% { background-color: #FF6347; }
-            80% { background-color: #4CAF50; }
-            90% { background-color: #9C27B0; }
-            100% { background-color: #FF5733; }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .footer a {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <div id="overlay"></div>
-
-    <div id="myDialog">
-        <button id="bismillahBtn">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</button>
-        <h3>Login</h3>
-        <input type="text" id="username" placeholder="Username" />
-        <input type="password" id="password" placeholder="Password" />
+    <div class="login-container" id="loginDialog">
+        <h2>Login</h2>
+        <input type="text" id="username" class="input-field" placeholder="Username" />
+        <input type="password" id="password" class="input-field" placeholder="Password" />
         <button id="loginBtn">Login</button>
-        <button id="whatsappContactBtn" onclick="window.location.href='https://wa.me/923321709972'">WhatsApp Contact</button>
-        <button id="darkModeBtn">Toggle Dark Mode</button>
-        <button id="closeDialog">Close</button>
-        <p id="loginError">Incorrect Username or Password</p>
+        <p class="error-message" id="loginError">Incorrect Username or Password</p>
+        <div class="footer">
+            <p>Don't have an account? <a href="#">Sign up here</a></p>
+        </div>
     </div>
 
     <script>
-        const closeDialogBtn = document.getElementById('closeDialog');
         const loginBtn = document.getElementById('loginBtn');
-        const whatsappContactBtn = document.getElementById('whatsappContactBtn');
-        const darkModeBtn = document.getElementById('darkModeBtn');
-        const dialogBox = document.getElementById('myDialog');
-        const overlay = document.getElementById('overlay');
         const loginError = document.getElementById('loginError');
+        const loginDialog = document.getElementById('loginDialog');
 
-        const validUsername = 'TF';
-        const validPassword = 'TF';
-
-        // Close dialog
-        closeDialogBtn.onclick = function() {
-            dialogBox.style.display = 'none';
-            overlay.style.display = 'none';
-        }
+        const validUsername = 'TF'; // Set username to "TF"
+        const validPassword = 'TF'; // Set password to "TF"
 
         // Handle login functionality
         loginBtn.onclick = function() {
@@ -199,22 +146,11 @@
 
             if (username === validUsername && password === validPassword) {
                 alert('Login Successful!');
-                dialogBox.style.display = 'none';
-                overlay.style.display = 'none';
+                // Hide login dialog after successful login
+                loginDialog.style.display = 'none';
             } else {
-                loginError.style.display = 'block';
+                loginError.style.display = 'block'; // Show error message if login is incorrect
             }
-        }
-
-        // Close dialog if overlay is clicked
-        overlay.onclick = function() {
-            dialogBox.style.display = 'none';
-            overlay.style.display = 'none';
-        }
-
-        // Toggle Dark Mode
-        darkModeBtn.onclick = function() {
-            document.body.classList.toggle('dark-mode');
         }
     </script>
 
