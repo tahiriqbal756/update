@@ -32,6 +32,9 @@
         h2 {
             color: #00ffcc;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 22px;
+            text-align: center;
         }
         input {
             width: 100%;
@@ -60,6 +63,8 @@
         .help-btn { background-color: #ff4444; color: white; }
         .dark-mode-btn { background-color: #007bff; color: white; margin-top: 20px; }
         .hidden { display: none; }
+        
+        /* Button Grid */
         .buttons-container {
             display: flex;
             flex-wrap: wrap;
@@ -69,14 +74,39 @@
             width: 90%;
         }
         .dynamic-button {
-            width: 200px;
-            height: 40px;
+            width: 45%;
+            height: 50px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
             color: white;
-            transition: background 0.5s ease-in-out;
-            background-color: #444;
+            animation: colorChange 2s infinite alternate;
+        }
+
+        /* Button Color Animation */
+        @keyframes colorChange {
+            0% { background-color: #ff4444; }
+            25% { background-color: #ff8800; }
+            50% { background-color: #007bff; }
+            75% { background-color: #00cc66; }
+            100% { background-color: #ff00ff; }
+        }
+
+        /* Title Style */
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 0px 0px 10px #00ffcc;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        /* Title Glow Effect */
+        @keyframes glow {
+            0% { color: #00ffcc; }
+            50% { color: #ff00ff; }
+            100% { color: #00ccff; }
         }
 
         /* Light Mode */
@@ -92,12 +122,6 @@
         .light-mode .login-btn { background-color: #007bff; color: white; }
         .light-mode .help-btn { background-color: #ff5722; }
         .light-mode .dark-mode-btn { background-color: #333; color: white; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
     </style>
 </head>
 <body>
@@ -119,7 +143,7 @@
 
     <!-- Buttons After Login -->
     <div class="hidden" id="buttonsContainer">
-        <h2>WhatsApp Mods Download</h2>
+        <h2 class="title">WhatsApp Mods Download</h2>
         <div class="buttons-container" id="dynamicButtons"></div>
     </div>
 
@@ -156,10 +180,11 @@
                 { text: "ER WhatsApp", link: "https://media4.appsfire.co/file/er-whats-app-by-assem-apk" },
                 { text: "WhatsApp Black", link: "https://media4.appsfire.co/file/wa5-abo3rab-apk" }
             ];
-            buttonsData.forEach(data => {
+            buttonsData.forEach((data, index) => {
                 var btn = document.createElement("button");
                 btn.className = "dynamic-button";
                 btn.textContent = data.text;
+                btn.style.float = (index % 2 === 0) ? "left" : "right";
                 btn.onclick = function() { window.open(data.link, "_blank"); };
                 container.appendChild(btn);
             });
