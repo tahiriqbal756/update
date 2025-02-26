@@ -24,15 +24,15 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             text-align: center;
             animation: dialogColorChange 1s infinite;
+            transition: all 0.3s ease;
         }
 
         #overlay {
@@ -47,143 +47,114 @@
         }
 
         input[type="text"], input[type="password"] {
-            padding: 8px;
+            padding: 12px;
             margin: 10px 0;
             width: 100%;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
-        #loginBtn, #whatsappContactBtn {
-            padding: 8px 16px;
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        #loginBtn, #whatsappContactBtn, #darkModeBtn, #closeDialog {
+            padding: 12px 24px;
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 10px 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
         }
 
-        #loginBtn:hover, #whatsappContactBtn:hover {
+        #loginBtn:hover, #whatsappContactBtn:hover, #darkModeBtn:hover, #closeDialog:hover {
             background-color: #45a049;
+            transform: translateY(-2px);
         }
 
-        #closeDialog {
-            padding: 8px 16px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
+        #whatsappContactBtn {
+            background-color: #25D366;
         }
 
-        #closeDialog:hover {
-            background-color: #da190b;
+        #whatsappContactBtn:hover {
+            background-color: #128C7E;
         }
 
         #darkModeBtn {
-            padding: 8px 16px;
             background-color: #555;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: 0.3s;
         }
 
         #darkModeBtn:hover {
             background-color: #333;
         }
 
+        #closeDialog {
+            background-color: #f44336;
+        }
+
+        #closeDialog:hover {
+            background-color: #da190b;
+        }
+
         #loginError {
             color: red;
             display: none;
-            margin-top: 10px;
+            margin-top: 15px;
+            font-size: 14px;
         }
 
         #bismillahBtn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #FF5733;
             color: white;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 18px;
             animation: buttonColorChange 1s infinite;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        #bismillahBtn:hover {
+            background-color: #FF6347;
         }
 
         @keyframes buttonColorChange {
-            0% {
-                background-color: #FF5733;
-            }
-            10% {
-                background-color: #33FF57;
-            }
-            20% {
-                background-color: #5733FF;
-            }
-            30% {
-                background-color: #FF33A1;
-            }
-            40% {
-                background-color: #33D4FF;
-            }
-            50% {
-                background-color: #FF5733;
-            }
-            60% {
-                background-color: #FFD700;
-            }
-            70% {
-                background-color: #FF6347;
-            }
-            80% {
-                background-color: #4CAF50;
-            }
-            90% {
-                background-color: #9C27B0;
-            }
-            100% {
-                background-color: #FF5733;
-            }
+            0% { background-color: #FF5733; }
+            10% { background-color: #33FF57; }
+            20% { background-color: #5733FF; }
+            30% { background-color: #FF33A1; }
+            40% { background-color: #33D4FF; }
+            50% { background-color: #FF5733; }
+            60% { background-color: #FFD700; }
+            70% { background-color: #FF6347; }
+            80% { background-color: #4CAF50; }
+            90% { background-color: #9C27B0; }
+            100% { background-color: #FF5733; }
         }
 
         @keyframes dialogColorChange {
-            0% {
-                background-color: #FF5733;
-            }
-            10% {
-                background-color: #33FF57;
-            }
-            20% {
-                background-color: #5733FF;
-            }
-            30% {
-                background-color: #FF33A1;
-            }
-            40% {
-                background-color: #33D4FF;
-            }
-            50% {
-                background-color: #FF5733;
-            }
-            60% {
-                background-color: #FFD700;
-            }
-            70% {
-                background-color: #FF6347;
-            }
-            80% {
-                background-color: #4CAF50;
-            }
-            90% {
-                background-color: #9C27B0;
-            }
-            100% {
-                background-color: #FF5733;
-            }
+            0% { background-color: #FF5733; }
+            10% { background-color: #33FF57; }
+            20% { background-color: #5733FF; }
+            30% { background-color: #FF33A1; }
+            40% { background-color: #33D4FF; }
+            50% { background-color: #FF5733; }
+            60% { background-color: #FFD700; }
+            70% { background-color: #FF6347; }
+            80% { background-color: #4CAF50; }
+            90% { background-color: #9C27B0; }
+            100% { background-color: #FF5733; }
         }
     </style>
 </head>
