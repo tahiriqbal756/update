@@ -18,21 +18,8 @@
             color: #ffffff;
         }
 
-        #openDialog {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        #openDialog:hover {
-            background-color: #45a049;
-        }
-
         #myDialog {
-            display: none;
+            display: block;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -48,7 +35,7 @@
         }
 
         #overlay {
-            display: none;
+            display: block;
             position: fixed;
             top: 0;
             left: 0;
@@ -66,7 +53,7 @@
             border-radius: 5px;
         }
 
-        #loginBtn, #whatsappContactBtn, #darkModeBtn {
+        #loginBtn, #whatsappContactBtn {
             padding: 8px 16px;
             background-color: #4CAF50;
             color: white;
@@ -76,7 +63,7 @@
             transition: 0.3s;
         }
 
-        #loginBtn:hover, #whatsappContactBtn:hover, #darkModeBtn:hover {
+        #loginBtn:hover, #whatsappContactBtn:hover {
             background-color: #45a049;
         }
 
@@ -92,6 +79,21 @@
 
         #closeDialog:hover {
             background-color: #da190b;
+        }
+
+        #darkModeBtn {
+            padding: 8px 16px;
+            background-color: #555;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        #darkModeBtn:hover {
+            background-color: #333;
         }
 
         #loginError {
@@ -147,9 +149,6 @@
 </head>
 <body>
 
-    <button id="openDialog">Open Login Dialog</button>
-    <button id="darkModeBtn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-
     <div id="overlay"></div>
 
     <div id="myDialog">
@@ -159,27 +158,22 @@
         <input type="password" id="password" placeholder="Password" />
         <button id="loginBtn">Login</button>
         <button id="whatsappContactBtn" onclick="window.location.href='https://wa.me/923321709972'">WhatsApp Contact</button>
+        <button id="darkModeBtn">Toggle Dark Mode</button>
         <button id="closeDialog">Close</button>
         <p id="loginError">Incorrect Username or Password</p>
     </div>
 
     <script>
-        const openDialogBtn = document.getElementById('openDialog');
         const closeDialogBtn = document.getElementById('closeDialog');
         const loginBtn = document.getElementById('loginBtn');
         const whatsappContactBtn = document.getElementById('whatsappContactBtn');
+        const darkModeBtn = document.getElementById('darkModeBtn');
         const dialogBox = document.getElementById('myDialog');
         const overlay = document.getElementById('overlay');
         const loginError = document.getElementById('loginError');
 
         const validUsername = 'TF';
         const validPassword = 'TF';
-
-        // Show dialog on page load
-        window.onload = function() {
-            dialogBox.style.display = 'block';
-            overlay.style.display = 'block';
-        }
 
         // Close dialog
         closeDialogBtn.onclick = function() {
@@ -207,8 +201,8 @@
             overlay.style.display = 'none';
         }
 
-        // Toggle dark mode
-        function toggleDarkMode() {
+        // Toggle Dark Mode
+        darkModeBtn.onclick = function() {
             document.body.classList.toggle('dark-mode');
         }
     </script>
