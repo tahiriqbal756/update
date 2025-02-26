@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Login & Buttons</title>
+    <title>WhatsApp Mods Download</title>
     <style>
         * {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
         }
         body {
             display: flex;
@@ -18,9 +19,9 @@
             height: 100vh;
             background: #121212;
             color: white;
+            flex-direction: column;
         }
         .login-container {
-            position: fixed;
             background: #222;
             padding: 20px;
             border-radius: 10px;
@@ -57,6 +58,7 @@
         }
         .login-btn { background-color: #00ffcc; color: black; }
         .help-btn { background-color: #ff4444; color: white; }
+        .dark-mode-btn { background-color: #007bff; color: white; margin-top: 20px; }
         .hidden { display: none; }
         .buttons-container {
             display: flex;
@@ -67,14 +69,29 @@
             width: 90%;
         }
         .dynamic-button {
-            width: 80px;
+            width: 200px;
             height: 40px;
             border: none;
             border-radius: 5px;
             font-weight: bold;
             color: white;
             transition: background 0.5s ease-in-out;
+            background-color: #444;
         }
+
+        /* Light Mode */
+        body.light-mode {
+            background: white;
+            color: black;
+        }
+        .light-mode .login-container {
+            background: #f0f0f0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .light-mode h2 { color: #007bff; }
+        .light-mode .login-btn { background-color: #007bff; color: white; }
+        .light-mode .help-btn { background-color: #ff5722; }
+        .light-mode .dark-mode-btn { background-color: #333; color: white; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.9); }
@@ -84,6 +101,9 @@
     </style>
 </head>
 <body>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
 
     <!-- Login Popup -->
     <div class="login-container" id="loginContainer">
@@ -99,7 +119,7 @@
 
     <!-- Buttons After Login -->
     <div class="hidden" id="buttonsContainer">
-        <h2>Welcome! Choose an Option:</h2>
+        <h2>WhatsApp Mods Download</h2>
         <div class="buttons-container" id="dynamicButtons"></div>
     </div>
 
@@ -108,7 +128,7 @@
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
-            if (username === "Tahiriqbal" && password === "Tahiriqbal") {
+            if (username === "TF" && password === "TF") {
                 document.getElementById("loginContainer").classList.add("hidden");
                 document.getElementById("buttonsContainer").classList.remove("hidden");
                 generateButtons();
@@ -124,32 +144,30 @@
 
         function generateButtons() {
             var container = document.getElementById("dynamicButtons");
-            for (var i = 1; i <= 50; i++) {
+            var buttonsData = [
+                { text: "WhatsApp Gold", link: "https://media4.appsfire.co/file/wa2-abo3rab-apk" },
+                { text: "WhatsApp Red", link: "https://media4.appsfire.co/file/wa3-abo3rab-apk" },
+                { text: "AG WhatsApp", link: "https://media4.appsfire.co/file/ag-whatsapp-by-assem-apk" },
+                { text: "AG2 WhatsApp", link: "https://media4.appsfire.co/file/ag2-whatsapp-by-assem-apk" },
+                { text: "AG3 WhatsApp", link: "https://media4.appsfire.co/file/ag3-whatsapp-by-assem-apk" },
+                { text: "WhatsApp Business", link: "https://media4.appsfire.co/file/wa-abo3rab-apk" },
+                { text: "WhatsApp Blue", link: "https://media4.appsfire.co/file/wa4-abo3rab-apk" },
+                { text: "WhatsApp Plus", link: "https://media4.appsfire.co/file/whatsapp-plus-by-assem-apk" },
+                { text: "ER WhatsApp", link: "https://media4.appsfire.co/file/er-whats-app-by-assem-apk" },
+                { text: "WhatsApp Black", link: "https://media4.appsfire.co/file/wa5-abo3rab-apk" }
+            ];
+            buttonsData.forEach(data => {
                 var btn = document.createElement("button");
                 btn.className = "dynamic-button";
-                btn.textContent = "Button " + i;
+                btn.textContent = data.text;
+                btn.onclick = function() { window.open(data.link, "_blank"); };
                 container.appendChild(btn);
-            }
-            changeColors();
+            });
         }
 
-        function changeColors() {
-            setInterval(() => {
-                document.querySelectorAll('.dynamic-button').forEach(button => {
-                    button.style.backgroundColor = getRandomColor();
-                });
-            }, 1000);
+        function toggleDarkMode() {
+            document.body.classList.toggle("light-mode");
         }
-
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
     </script>
 
 </body>
