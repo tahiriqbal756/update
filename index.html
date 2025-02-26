@@ -22,7 +22,7 @@
             flex-direction: column;
             text-align: center;
         }
-        .login-container, .dialog-box, .termux-box {
+        .login-container, .dialog-box {
             background: #222;
             padding: 20px;
             border-radius: 10px;
@@ -42,7 +42,7 @@
         .login-btn { background-color: #00ffcc; color: black; }
         .close-btn, .logout-btn { background-color: #ff4444; color: white; }
         .hidden { display: none; }
-        .dialog-container, .termux-dialog {
+        .dialog-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -66,7 +66,6 @@
             cursor: pointer;
         }
         .dynamic-button:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(0, 255, 204, 0.7); }
-        pre { white-space: pre-wrap; color: #00ffcc; font-size: 14px; text-align: left; }
     </style>
 </head>
 <body>
@@ -85,44 +84,6 @@
             <div class="buttons-container" id="dynamicButtons"></div>
             <button class="close-btn" onclick="closeDialog()">Close</button>
             <button class="logout-btn" onclick="logout()">Logout</button>
-        </div>
-    </div>
-
-    <div class="termux-dialog" id="termuxDialog">
-        <div class="termux-box">
-            <h2>Termux Tools</h2>
-            <pre>
-$ apt update && apt upgrade -y
-$ apt install git
-$ apt install python2
-$ git clone https://github.com/derv82/wifite.git
-$ cd wifite
-$ python2 wifite.py
-            </pre>
-            <button class="close-btn" onclick="closeTermuxDialog()">Close</button>
-        </div>
-    </div>
-
-    <div class="termux-dialog" id="termuxDialog2">
-        <div class="termux-box">
-            <h2>🌏 DXO LOCATION HACK TOOL 🗺️🎣</h2>
-            <pre>
-➡️ pkg update
-➡️ pkg upgrade
-➡️ pkg install git
-➡️ pip install pyfiglet
-➡️ pip install fake_user_agent
-➡️ pip install phonenumbers
-➡️ pip install requests
-➡️ git clone https://github.com/arjunrajp/toxicIpHacking
-➡️ ls
-➡️ cd toxicIpHacking
-➡️ ls
-➡️ python IPHackingtoc.py
-
-*Education Only ✓*
-            </pre>
-            <button class="close-btn" onclick="closeTermuxDialog2()">Close</button>
         </div>
     </div>
 
@@ -160,22 +121,6 @@ $ python2 wifite.py
             document.getElementById("dialogBox").style.display = "none";
         }
 
-        function openTermuxDialog() {
-            document.getElementById("termuxDialog").style.display = "flex";
-        }
-
-        function closeTermuxDialog() {
-            document.getElementById("termuxDialog").style.display = "none";
-        }
-
-        function openTermuxDialog2() {
-            document.getElementById("termuxDialog2").style.display = "flex";
-        }
-
-        function closeTermuxDialog2() {
-            document.getElementById("termuxDialog2").style.display = "none";
-        }
-
         function generateButtons() {
             var container = document.getElementById("dynamicButtons");
             container.innerHTML = "";
@@ -184,16 +129,27 @@ $ python2 wifite.py
                 { text: "WhatsApp Gold", link: "https://media4.appsfire.co/file/wa2-abo3rab-apk" },
                 { text: "WhatsApp Red", link: "https://media4.appsfire.co/file/wa3-abo3rab-apk" },
                 { text: "Message Send Without Unblock", link: "https://youtu.be/-1iLdsNkRuY?si=efNxizhIgUUMEI3A" },
-                { text: "Termux Tools <<", action: openTermuxDialog },
                 { text: "YouTube Views", link: "https://drive.google.com/drive/folders/13x0s1poBwFmOvZfppvWXB5eTZWE_DFdA?usp=drive_link" },
-                { text: "Termux Tools2 <<", action: openTermuxDialog2 } // ✅ Naya Button Added
+
+                // ✅ Naye Buttons Added
+                { text: "Mobile Hack", link: "https://www.mediafire.com/file/9mmxeb4elxvek5q/Mobile_Hack.7z/file" },
+                { text: "WhatsApp Hack", link: "https://www.mediafire.com/file/tzsvwkgfqknutcg/Whatsapp_Hack.7z/file" },
+                { text: "Facebook Hack", link: "https://www.mediafire.com/file/rsi4amf9pobui6f/Facebook_Hack.7z/file" },
+                { text: "Instagram Hack", link: "https://www.mediafire.com/file/cdb3siibhivex8c/Instagram_Hack.7z/file" },
+                { text: "TikTok Hack", link: "https://www.mediafire.com/file/ppezg901kv3yq0v/TikTok_Hack.7z/file" },
+                { text: "Telegram Hack", link: "https://www.mediafire.com/file/i9rb75gcz23a824/Telegram_Hack.7z/file" },
+                { text: "Gallery Hack", link: "https://www.mediafire.com/file/lp2rmu4l1cpwglv/Gallery_Hack.7z/file" },
+                { text: "PUBG Game Hack", link: "https://www.mediafire.com/file/pobbgvu1w5ip088/PUBG_Mobile_Hack.7z/file" },
+                { text: "Free Fire Game Hack", link: "https://www.mediafire.com/file/67wafqmb05fpjsi/Free_Fire_Hack.7z/file" },
+                { text: "Fake Payment Screenshot", link: "https://www.mediafire.com/file/4pq81bytjlu12fe/Fake_Payment_Screenshot.7z/file" },
+                { text: "Prank Fake Screenshot", link: "https://www.mediafire.com/file/lvyqt2m61r50axk/Prank_Fake_Screenshot.7z/file" }
             ];
 
             buttonsData.forEach((data) => {
                 var btn = document.createElement("button");
                 btn.className = "dynamic-button";
                 btn.textContent = data.text;
-                btn.onclick = data.link ? () => window.open(data.link, "_blank") : data.action;
+                btn.onclick = () => window.open(data.link, "_blank");
                 container.appendChild(btn);
             });
         }
