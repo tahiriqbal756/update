@@ -45,6 +45,12 @@ h1 {
     margin-bottom: 10px;
 }
 
+#timer {
+    font-size: 1.2em;
+    color: #ffcc00;
+    margin-top: 20px;
+}
+
 button {
     background-color: #00bcd4;
     color: #ffffff;
@@ -58,10 +64,4 @@ button {
 
 button:hover {
     background-color: #007c8c;
-}
-
-footer {
-    margin-top: 50px;
-    font-size: 1em;
-    color: #bbbbbb;
 }
