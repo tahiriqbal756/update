@@ -12,7 +12,7 @@
             <h1>Welcome to Bot Hosting</h1>
         </header>
         
-        <section class="plan-info">
+        <section class="plan-info" id="plan-info">
             <h2>Free Plan</h2>
             <ul>
                 <li>2GB RAM</li>
@@ -21,6 +21,7 @@
                 <li>Auto-delete inactive bots after 7-15 days</li>
                 <li>Manual upgrades available</li>
             </ul>
+            <div id="timer"></div>
         </section>
         
         <section class="help-section">
@@ -33,10 +34,39 @@
     </div>
 
     <script>
-        // Redirect to WhatsApp on help button click
+        // Timer function for free plan activation
+        let freePlanTimer = 60;  // Timer in seconds
+        const timerElement = document.getElementById('timer');
+
+        // Start the timer countdown
+        function startTimer() {
+            let interval = setInterval(function() {
+                freePlanTimer--;
+                timerElement.innerHTML = `You can start using the free plan in: ${freePlanTimer} seconds`;
+                
+                if (freePlanTimer <= 0) {
+                    clearInterval(interval);
+                    document.getElementById('plan-info').innerHTML = `
+                        <h2>Free Plan Activated!</h2>
+                        <ul>
+                            <li>2GB RAM</li>
+                            <li>10GB Storage</li>
+                            <li>1 Bot per User</li>
+                            <li>Auto-delete inactive bots after 7-15 days</li>
+                            <li>Manual upgrades available</li>
+                        </ul>
+                    `;
+                }
+            }, 1000);  // Update every second
+        }
+
+        // Function to redirect to WhatsApp
         function redirectToWhatsApp() {
             window.location.href = 'https://wa.me/923321709972'; // WhatsApp link
         }
+
+        // Start the timer when the page loads
+        window.onload = startTimer;
     </script>
 </body>
 </html>
