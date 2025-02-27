@@ -1,78 +1,67 @@
+/* Basic Styles for Dark Mode and Layout */
 body {
+    background-color: #121212;
+    color: #ffffff;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
     text-align: center;
-    background: linear-gradient(to right, #ff758c, #ff7eb3);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 50px;
 }
 
-.open-login, .download-button, .demo-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.open-login { background-color: #007bff; color: white; }
-.download-button { background-color: #28a745; color: white; }
-.demo-button { background-color: #ff5733; color: white; }
-
-.open-login:hover { background-color: #0056b3; }
-.download-button:hover { background-color: #218838; }
-.demo-button:hover { background-color: #c70039; }
-
-.login-dialog, .main-dialog, .demo-dialog {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.login-content, .main-content, .demo-content {
-    background: white;
+header {
+    background-color: #1c1c1c;
     padding: 20px;
-    border-radius: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.7);
-    opacity: 0;
-    transition: 0.3s ease-in-out;
+    margin-bottom: 20px;
 }
 
-.login-dialog.show .login-content,
-.main-dialog.show .main-content,
-.demo-dialog.show .demo-content {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
+h1 {
+    font-size: 2.5em;
+    color: #00bcd4;
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
+.plan-info {
+    background-color: #333333;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
 }
 
-input, button {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 80%;
-    border-radius: 5px;
+.plan-info h2 {
+    font-size: 2em;
+    color: #00bcd4;
+}
+
+.plan-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.plan-info li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #00bcd4;
+    color: #ffffff;
+    font-size: 1.2em;
+    padding: 15px 30px;
     border: none;
-    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
-#error-message {
-    color: red;
-    font-weight: bold;
+button:hover {
+    background-color: #007c8c;
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 1em;
+    color: #bbbbbb;
 }
